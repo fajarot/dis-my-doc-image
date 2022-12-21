@@ -8,13 +8,14 @@ on:
 
     # Publish `v1.2.3` tags as releases.
     tags:
-      - v1.0.1
+      - v1.0.2
 
   # Run tests for any PRs.
   pull_request:
 
 env:
   IMAGE_NAME: ghtoken_product_demo
+  DESCRIPTION: "ini adalah description yang paling bagus v1.0.2"
 
 jobs:
   # Push image to GitHub Packages.
@@ -38,6 +39,7 @@ jobs:
       - name: Push image
         run: |
           IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
+          LABEL org.opencontainers.image.description DESCRIPTION
 
           # Change all uppercase to lowercase
           IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
@@ -46,7 +48,7 @@ jobs:
           # Strip "v" prefix from tag name
           [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
           # Use Docker `latest` tag convention
-          [ "$VERSION" == "master" ] && VERSION=latest
+          [ "$VERSION" == "main" ] && VERSION=latest
           echo IMAGE_ID=$IMAGE_ID
           echo VERSION=$VERSION
           docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
