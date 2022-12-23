@@ -8,14 +8,14 @@ on:
 
     # Publish `v1.2.3` tags as releases.
     tags:
-      - v1.0.2
+      - v1.0.4
 
   # Run tests for any PRs.
   pull_request:
 
 env:
   IMAGE_NAME: ghtoken_product_demo
-  DESCRIPTION: "ini adalah description yang paling bagus v1.0.2"
+  DESCRIPTION: "masih coba yang ini"
 
 jobs:
   # Push image to GitHub Packages.
